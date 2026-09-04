@@ -37,7 +37,14 @@ sudo DIMU_SERVICE_TOKEN='byt-mig' DIMU_API_KEY='demo' \
 En container kan byggas med `docker build -t dimu .` och köras med
 `docker run --rm -p 8000:8000 -e DIMU_SERVICE_TOKEN='byt-mig' dimu`.
 GitHub Actions publicerar Git-taggen och `latest` till GitHub Container
-Registry och skapar en GitHub Release när en Git-tagg pushas.
+Registry och skapar en GitHub Release när en Git-tagg pushas. Varje release
+innehåller `linux/amd64` och `linux/arm64`.
+
+Den publicerade imagen är publik och kan hämtas utan inloggning:
+
+```console
+docker pull ghcr.io/nedomkull-mathematical-modeling/digitaltmuseum-ai:latest
+```
 
 Fullständig dokumentation på svenska och norskt bokmål finns i katalogen
 `docs/` och byggs med `mkdocs build --strict`. Tester körs med

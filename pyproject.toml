@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "dimu"
-version = "0.2.0"
+version = "0.2.1"
 description = "Transparent Python client and AI-friendly API for DigitaltMuseum"
 readme = "README.md"
 authors = [{name = "Henrik Blidh", email = "henrik.blidh@nedomkull.com"}]

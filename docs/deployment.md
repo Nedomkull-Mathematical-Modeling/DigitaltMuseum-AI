@@ -57,18 +57,23 @@ pushas. En Git-tagg som `v0.2.0` publicerar containertaggarna `v0.2.0` och
 versionsanteckningar. Containern publiceras till:
 
 ```text
-ghcr.io/<github-ägare>/<repository>:<tagg>
+ghcr.io/nedomkull-mathematical-modeling/digitaltmuseum-ai:<tagg>
 ```
 
+Varje tagg är ett manifest för de vanligaste Linux-arkitekturerna:
+`linux/amd64` och `linux/arm64`. Docker väljer automatiskt rätt image för
+värddatorn.
+
 Publiceringen använder repositoryts kortlivade `GITHUB_TOKEN` med
-`packages: write`; ingen separat registry-hemlighet behövs. Paketets synlighet
-hanteras under **Packages** i GitHub. Kör sedan en publicerad image så här:
+`packages: write`; ingen separat registry-hemlighet behövs. Imagen är publik
+och kan därför hämtas utan GitHub-inloggning. Synligheten hanteras under
+**Packages** i GitHub. Kör den publicerade imagen så här:
 
 ```console
-docker pull ghcr.io/<github-ägare>/<repository>:latest
+docker pull ghcr.io/nedomkull-mathematical-modeling/digitaltmuseum-ai:latest
 docker run --rm -p 8000:8000 \
   -e DIMU_SERVICE_TOKEN='en-lång-slumpmässig-token' \
-  ghcr.io/<github-ägare>/<repository>:latest
+  ghcr.io/nedomkull-mathematical-modeling/digitaltmuseum-ai:latest
 ```
 
 ## Starta processen
