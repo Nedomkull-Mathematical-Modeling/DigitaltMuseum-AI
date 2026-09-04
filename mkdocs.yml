@@ -1,0 +1,78 @@
+site_name: dimu
+site_description: Svensk dokumentation för den transparenta DigitaltMuseum-klienten och dess AI-API
+site_url: !ENV [READTHEDOCS_CANONICAL_URL, "https://dimu.readthedocs.io/"]
+
+theme:
+  name: material
+  language: sv
+  features:
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - search.suggest
+
+plugins:
+  - search:
+      lang: sv
+  - i18n:
+      docs_structure: suffix
+      fallback_to_default: false
+      reconfigure_material: true
+      reconfigure_search: true
+      languages:
+        - locale: sv
+          default: true
+          name: Svenska
+          build: true
+          site_name: dimu
+          site_description: Svensk dokumentation för den transparenta DigitaltMuseum-klienten och dess AI-API
+        - locale: "no"
+          name: Norsk bokmål
+          build: true
+          site_name: dimu
+          site_description: Norsk dokumentasjon for den transparente DigitaltMuseum-klienten og dens AI-API
+          theme:
+            language: nb
+          nav_translations:
+            Hem: Hjem
+            Installation och konfiguration: Installasjon og konfigurasjon
+            Python-klienten: Python-klienten
+            Sökguiden: Søkeguiden
+            Fält och objekttyper: Felt og objekttyper
+            HTTP-API: HTTP-API
+            OpenAI och chatbotar: OpenAI og chatboter
+            Drift och säkerhet: Drift og sikkerhet
+            Felsökning och begränsningar: Feilsøking og begrensninger
+            Python-referens: Python-referanse
+            Release och Read the Docs: Publisering og Read the Docs
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_style: google
+            show_source: true
+            members_order: source
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+
+nav:
+  - Hem: index.md
+  - Installation och konfiguration: installation.md
+  - Python-klienten: client.md
+  - Sökguiden: search.md
+  - Fält och objekttyper: fields.md
+  - HTTP-API: api.md
+  - OpenAI och chatbotar: openai.md
+  - Drift och säkerhet: deployment.md
+  - Felsökning och begränsningar: troubleshooting.md
+  - Python-referens: reference.md
+  - Release och Read the Docs: publishing.md
