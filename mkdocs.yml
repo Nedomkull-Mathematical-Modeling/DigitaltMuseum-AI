@@ -41,6 +41,7 @@ plugins:
             Fält och objekttyper: Felt og objekttyper
             HTTP-API: HTTP-API
             OpenAI och chatbotar: OpenAI og chatboter
+            Realtime-kurator: Realtime-kurator
             Drift och säkerhet: Drift og sikkerhet
             Felsökning och begränsningar: Feilsøking og begrensninger
             Python-referens: Python-referanse
@@ -76,6 +77,7 @@ nav:
   - Fält och objekttyper: fields.md
   - HTTP-API: api.md
   - OpenAI och chatbotar: openai.md
+  - Realtime-kurator: realtime-curator.md
   - Drift och säkerhet: deployment.md
   - Felsökning och begränsningar: troubleshooting.md
   - Python-referens: reference.md
