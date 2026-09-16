@@ -59,16 +59,24 @@ class ApiTest(unittest.TestCase):
         finally:
             dimu.close()
 
-    def test_artifact_format_is_forwarded(self):
+    def test_artifact_defaults_to_json_and_forwards_explicit_format(self):
+        seen = []
+
         def handler(request: httpx.Request) -> httpx.Response:
-            self.assertEqual(request.url.params["mapping"], "ESE")
+            mapping = request.url.params["mapping"]
+            seen.append(mapping)
+            if mapping == "simple_json":
+                return httpx.Response(200, content=b'{"record":true}', headers={"content-type": "application/json"})
             return httpx.Response(200, content=b"<record />", headers={"content-type": "application/xml"})
 
         dimu, client = self.make_client(handler)
         try:
             with client:
+                json_response = client.get("/v1/artifacts/123", headers=AUTH)
                 response = client.get("/v1/artifacts/123?format=ESE", headers=AUTH)
+            self.assertEqual(json_response.json(), {"record": True})
             self.assertEqual(response.content, b"<record />")
+            self.assertEqual(seen, ["simple_json", "ESE"])
         finally:
             dimu.close()
 
@@ -117,6 +125,8 @@ class OpenAIToolSchemaTest(unittest.TestCase):
     def test_tools_are_strict_and_closed_recursively(self):
         tools = openai_tools()
         self.assertEqual(len(tools), 3)
+        artifact_tool = next(tool for tool in tools if tool["name"] == "get_digitaltmuseum_artifact")
+        self.assertNotIn("format", artifact_tool["parameters"]["properties"])
 
         def inspect(value):
             if isinstance(value, dict):

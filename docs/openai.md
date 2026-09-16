@@ -39,7 +39,6 @@ def run_dimu_tool(name: str, arguments: dict):
         response = httpx.get(
             f"{service_url}/v1/artifacts/{arguments['unique_id']}",
             headers=headers,
-            params={"format": arguments["format"]},
             timeout=35,
         )
     elif name == "list_digitaltmuseum_collections":
@@ -58,6 +57,11 @@ def run_dimu_tool(name: str, arguments: dict):
 Returnera `response.text` som tool output. Då får modellen DigitaltMuseums data
 utan ett normaliserande mellanlager. Begränsa inte body ytterligare om
 verbatim-kravet är viktigare än tokenkostnaden.
+
+AI-verktyget exponerar ingen formatparameter. Artefaktanropet använder därför
+alltid endpointens standard `simple_json`; chatboten får aldrig ABM- eller
+ESE-XML. Dessa format finns kvar för uttryckliga anrop till Python-klienten
+eller HTTP-endpointen utanför AI-verktyget.
 
 ## Komplett exempel
 

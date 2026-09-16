@@ -146,10 +146,11 @@ class DimuClientTest(unittest.TestCase):
             return httpx.Response(200, content=b"record")
 
         with DimuClient("secret", base_url="https://example.test", transport=httpx.MockTransport(handler)) as client:
+            self.assertEqual(client.artifact("id").content, b"record")
             for mapping in ArtifactFormat:
                 self.assertEqual(client.artifact("id", mapping).content, b"record")
 
-        self.assertEqual(seen, ["simple_json", "ABM", "ESE"])
+        self.assertEqual(seen, ["simple_json", "simple_json", "ABM", "ESE"])
 
     def test_collections_parses_the_owner_shape(self):
         xml = b"<owners><owner><identifier>S-X</identifier><parent>S-P</parent><name>Museum</name></owner></owners>"

@@ -49,6 +49,9 @@ def _strict_schema(model: type[SearchRequest] | type[ArtifactRequest] | type[Col
 
 def openai_tools() -> list[dict[str, Any]]:
     """Returnera verktygsdefinitioner för OpenAI Responses API."""
+    artifact_parameters = _strict_schema(ArtifactRequest)
+    artifact_parameters["properties"].pop("format")
+    artifact_parameters["required"].remove("format")
     return [
         {
             "type": "function",
@@ -66,9 +69,9 @@ def openai_tools() -> list[dict[str, Any]]:
             "name": "get_digitaltmuseum_artifact",
             "description": (
                 "Hämta den fullständiga, oförändrade posten för ett unique_id eller uuid från en sökträff. "
-                "Använd simple_json för chatbotläsning och ABM eller ESE endast när originalformatet behövs."
+                "Verktyget använder alltid simple_json så att svaret är JSON, aldrig ABM- eller ESE-XML."
             ),
-            "parameters": _strict_schema(ArtifactRequest),
+            "parameters": artifact_parameters,
             "strict": True,
         },
         {
