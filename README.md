@@ -1,5 +1,11 @@
 # dimu - Digitalt Museum-klient och FastAPI-proxy
 
+[![PyPI](https://img.shields.io/pypi/v/dimu.svg)](https://pypi.org/project/dimu/)
+[![PyPI downloads](https://img.shields.io/pypi/dm/dimu.svg)](https://pypi.org/project/dimu/)
+[![Test, build, and publish](https://github.com/Nedomkull-Mathematical-Modeling/DigitaltMuseum-AI/actions/workflows/publish.yml/badge.svg)](https://github.com/Nedomkull-Mathematical-Modeling/DigitaltMuseum-AI/actions/workflows/publish.yml)
+[![Container](https://github.com/Nedomkull-Mathematical-Modeling/DigitaltMuseum-AI/actions/workflows/container.yml/badge.svg)](https://github.com/Nedomkull-Mathematical-Modeling/DigitaltMuseum-AI/actions/workflows/container.yml)
+[![Documentation Status](https://readthedocs.org/projects/dimu/badge/?version=latest)](https://dimu.readthedocs.io/)
+
 `dimu` är en transparent Python-klient och en valfri FastAPI-proxy för
 [DigitaltMuseums publika API](https://store-search.dimu.org/docs). Indata
 valideras med Pydantic, men lyckade sök- och objektsvar lämnas orörda.
